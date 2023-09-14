@@ -282,3 +282,9 @@ treemap.c:138:3: note: previous implicit declaration of ‘removeNode’ with ty
 cc1: all warnings being treated as errors
 Compilation failed
 7f856f5
+Thu 14 Sep 2023 12:40:08 PM UTC: 
+ treemap.c | 22 +++++++++++++++++++---
+ 1 file changed, 19 insertions(+), 3 deletions(-)
+ tests:  11|5
+total_score: 20/70
+4a7707e
