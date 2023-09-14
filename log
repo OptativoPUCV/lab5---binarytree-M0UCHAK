@@ -188,3 +188,14 @@ treemap.c:64:13: error: variable ‘current’ set but not used [-Werror=unused-
 cc1: all warnings being treated as errors
 Compilation failed
 2a4a41e
+Thu 14 Sep 2023 11:55:27 AM UTC: 
+ treemap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:4:
+treemap.c: In function ‘insertTreeMap’:
+treemap.c:77:3: error: ‘current’ undeclared (first use in this function)
+   77 |   current = tree -> current;
+      |   ^~~~~~~
+treemap.c:77:3: note: each undeclared identifier is reported only once for each function it appears in
+Compilation failed
+2ee4183
