@@ -211,9 +211,8 @@ Pair* upperBound(TreeMap* tree, void* key){
     else current = current -> right;
         
   }
-
   if (ub_node != NULL) return ub_node -> pair;
-  else return NULL;
+  else firstTreeMap(tree);
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 
