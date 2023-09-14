@@ -105,63 +105,47 @@ TreeNode * minimum(TreeNode * x){
   }
   return x;
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 
-void removeLeaf(TreeMap* tree, TreeNode* node){
-    
-  if ((node == NULL) || (tree == NULL)) return;
-    
-  TreeNode* parent = node -> parent;
-  
-  if (parent == NULL) tree -> root = NULL;
-  else if (parent -> left == node) parent -> left = NULL;
-  else parent -> right = NULL;
-
-  free(node -> pair);
-  free(node);
-}
-
-void removeNodeWithOneChild(TreeMap* tree, TreeNode* node) {
-    
-  if ((node == NULL) || (tree == NULL)) return;
-    
-  TreeNode* parent = node -> parent;
-  TreeNode* child = (node -> left != NULL) ? node -> left : node -> right;
-
-  if (parent == NULL) tree -> root = child;
-  else if (parent -> left == node) parent -> left = child;
-  else parent -> right = child;
-  
-  if (child != NULL) child -> parent = parent;
-
-  free(node->pair);
-  free(node);
-}
-
-void removeNodeWithTwoChildren(TreeMap* tree, TreeNode* node){
-  
-  if ((node == NULL) || (tree == NULL)) return;
-
-  TreeNode* minNode = minimum(node -> right);
-
-  node -> pair = minNode -> pair;
-
-  if (minNode -> parent -> left == minNode) minNode -> parent -> left = minNode -> right;
-  else minNode -> parent -> right = minNode -> right;
-    
-  if (minNode -> right != NULL) minNode -> right -> parent = minNode -> parent;
-    
-  free(minNode->pair);
-  free(minNode);
-}
 /////////////////////////////////////////////////////////////////////////////////////////
 
 void removeNode(TreeMap * tree, TreeNode* node){
+
+  if (tree == NULL || node == NULL) return; 
+    
+  if ((node -> left == NULL) && (node -> right == NULL)){
+    if (node -> parent != NULL){
+      if (node -> parent -> left == node){
+        node -> parent -> left = NULL;
+      } 
+      else if (node->parent->right == node) node -> parent -> right = NULL;
+      else tree -> root = NULL;
+        
+      free(node);
+    }
+  else if ((node -> left == NULL) || (node -> right == NULL)){
+    TreeNode* child = (node -> left != NULL) ? node -> left : node -> right;
+
+    if (node -> parent != NULL){
+      if (node -> parent -> left == node) node->parent->left = child;
   
-  if ((tree == NULL) || (node == NULL)) return;
-  if ((node -> left == NULL) && (node -> right == NULL)) removeLeaf(tree, node);
-  else if (node->left != NULL && node->right != NULL) removeNodeWithTwoChildren(tree, node);
-  else removeNodeWithOneChild(tree, node);
+      else if (node -> parent -> right == node){
+        node -> parent -> right = child;
+        child -> parent = node -> parent;
+      } 
+      else{
+        tree -> root = child;
+        child -> parent = NULL;
+      }
+      free(node);
+  }
+  else{
+    TreeNode* minRightSubtree = minimum(node->right);
+    Pair* tempPair = node -> pair;
+    node -> pair = minRightSubtree -> pair;
+    minRightSubtree -> pair = tempPair;
+
+    removeNode(tree, minRightSubtree);
+  }
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -173,7 +157,8 @@ void eraseTreeMap(TreeMap * tree, void* key){
     removeNode(tree, node);
 
 }
-////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
 Pair* searchTreeMapRecursive(TreeNode* node, void* key, int (*lower_than)(void* key1, void* key2), TreeNode** current){
   
   if (node == NULL){
@@ -205,14 +190,17 @@ Pair* searchTreeMap(TreeMap* tree, void* key){
   return result;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-Pair * upperBound(TreeMap * tree, void* key) {
+
+Pair * upperBound(TreeMap * tree, void* key){
     return NULL;
 }
+/////////////////////////////////////////////////////////////////////////////////////////
 
-Pair * firstTreeMap(TreeMap * tree) {
+Pair * firstTreeMap(TreeMap * tree){
     return NULL;
 }
+/////////////////////////////////////////////////////////////////////////////////////////
 
-Pair * nextTreeMap(TreeMap * tree) {
+Pair * nextTreeMap(TreeMap * tree){
     return NULL;
 }
