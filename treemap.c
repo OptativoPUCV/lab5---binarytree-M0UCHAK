@@ -145,8 +145,9 @@ Pair * searchTreeMap(TreeMap * tree, void* key){
 
   TreeNode* current = NULL;
   Pair* result = searchTreeMapRecursive(tree->root, key, tree->lower_than, &current);
-  tree -> current = current;
 
+  if (current == NULL) tree -> current = NULL;
+  else tree -> current = current;
   return result;
 }
 
