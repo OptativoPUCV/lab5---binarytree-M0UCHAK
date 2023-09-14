@@ -57,10 +57,10 @@ TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)){
   return map;
 }
 
-//void insertTreeMap(TreeMap * tree, void* key, void * value){
+void insertTreeMap(TreeMap * tree, void* key, void * value){
   
-  //  return NULL;  
-//}
+  return 2;  
+}
 
 TreeNode * minimum(TreeNode * x){
 
