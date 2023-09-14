@@ -62,6 +62,8 @@ void insertTreeMap(TreeMap * tree, void* key, void * value){
   if (tree == NULL) return;
     
   TreeNode* current = NULL;
+  if(current != NULL) return;
+  
   Pair* existingPair = searchTreeMap(tree, key);
   
   if (existingPair != NULL) return;
