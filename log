@@ -36,3 +36,13 @@ treemap.c:60:6: note: declared here
 cc1: all warnings being treated as errors
 Compilation failed
 d9e62c4
+Thu 14 Sep 2023 11:24:07 AM UTC: 
+ treemap.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+/nix/store/039g378vc3pc3dvi9dzdlrd0i4q93qwf-binutils-2.39/bin/ld: /tmp/cceO1jRm.o: in function `insert_test1':
+test.c:(.text+0x757): undefined reference to `insertTreeMap'
+/nix/store/039g378vc3pc3dvi9dzdlrd0i4q93qwf-binutils-2.39/bin/ld: /tmp/cceO1jRm.o: in function `insert_test2':
+test.c:(.text+0x7e2): undefined reference to `insertTreeMap'
+collect2: error: ld returned 1 exit status
+Compilation failed
+ae08189
