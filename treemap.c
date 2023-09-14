@@ -92,7 +92,7 @@ Pair* searchTreeMapRecursive(TreeNode* node, void* key, int (*lower_than)(void* 
 
   if(comparison == 0){
     *current = node;
-    return node -> Pair; 
+    return node -> pair; 
   }  
 
 
