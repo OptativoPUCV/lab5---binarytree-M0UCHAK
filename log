@@ -77,3 +77,18 @@ treemap.c:93:1: error: control reaches end of non-void function [-Werror=return-
 cc1: all warnings being treated as errors
 Compilation failed
 6c9d0fa
+Thu 14 Sep 2023 11:29:47 AM UTC: 
+ treemap.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+In file included from test.c:4:
+treemap.c: In function ‘searchTreeMapRecursive’:
+treemap.c:95:20: error: ‘TreeNode’ has no member named ‘Pair’; did you mean ‘pair’?
+   95 |     return node -> Pair;
+      |                    ^~~~
+      |                    pair
+treemap.c:99:1: error: control reaches end of non-void function [-Werror=return-type]
+   99 | }
+      | ^
+cc1: all warnings being treated as errors
+Compilation failed
+e4fcd0c
