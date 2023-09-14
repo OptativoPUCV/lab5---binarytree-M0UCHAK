@@ -252,3 +252,9 @@ Thu 14 Sep 2023 12:23:47 PM UTC:
  tests:  8|6
 total_score: 15/70
 6303a8a
+Thu 14 Sep 2023 12:24:13 PM UTC: 
+ treemap.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
+ tests:  10|5
+total_score: 15/70
+50adb91
