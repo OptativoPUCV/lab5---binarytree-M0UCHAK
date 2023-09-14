@@ -122,35 +122,29 @@ Pair* searchTreeMapRecursive(TreeNode* node, void* key, int (*lower_than)(void* 
     *current = NULL;
     return NULL;
   }
-
   int comparison = lower_than(key, node -> pair -> key);
 
-  if(comparison == 0){
+  if (comparison == 0){
     *current = node;
-    return node -> pair; 
-  }  
-
+    return node -> pair;
+  } 
   else if (comparison < 0) return searchTreeMapRecursive(node -> left, key, lower_than, current);
-
   else return searchTreeMapRecursive(node -> right, key, lower_than, current);
-
 }
 
-Pair * searchTreeMap(TreeMap * tree, void* key){
+Pair* searchTreeMap(TreeMap* tree, void* key){
   
-  if((tree == NULL) || (tree -> root == NULL)){
+  if (tree == NULL || tree->root == NULL){
     tree -> current = NULL;
     return NULL;
   }
-
   TreeNode* current = NULL;
-  Pair* result = searchTreeMapRecursive(tree->root, key, tree->lower_than, &current);
+  Pair* result = searchTreeMapRecursive(tree -> root, key, tree -> lower_than, &current);
 
   if (current == NULL) tree -> current = NULL;
   else tree -> current = current;
   return result;
 }
-
 
 Pair * upperBound(TreeMap * tree, void* key) {
     return NULL;
