@@ -112,40 +112,44 @@ void removeNode(TreeMap * tree, TreeNode* node){
 
   if (tree == NULL || node == NULL) return; 
     
-  if ((node -> left == NULL) && (node -> right == NULL)){
-    if (node -> parent != NULL){
-      if (node -> parent -> left == node){
-        node -> parent -> left = NULL;
-      } 
-      else if (node->parent->right == node) node -> parent -> right = NULL;
-      else tree -> root = NULL;
-        
-      free(node);
+  TreeNode* parent = node->parent;
+
+    if (node->left == NULL && node->right == NULL) {
+        if (parent != NULL) {
+            if (parent->left == node) {
+                parent->left = NULL;
+            } else {
+                parent->right = NULL;
+            }
+        } else {
+            tree->root = NULL;
+        }
+        free(node);
     }
-  else if ((node -> left == NULL) || (node -> right == NULL)){
-    TreeNode* child = (node -> left != NULL) ? node -> left : node -> right;
+    else if (node->left == NULL || node->right == NULL) {
+        TreeNode* child = (node->left != NULL) ? node->left : node->right;
 
-    if (node -> parent != NULL){
-      if (node -> parent -> left == node) node->parent->left = child;
-  
-      else if (node -> parent -> right == node){
-        node -> parent -> right = child;
-        child -> parent = node -> parent;
-      } 
-      else{
-        tree -> root = child;
-        child -> parent = NULL;
-      }
-      free(node);
-  }
-  else{
-    TreeNode* minRightSubtree = minimum(node->right);
-    Pair* tempPair = node -> pair;
-    node -> pair = minRightSubtree -> pair;
-    minRightSubtree -> pair = tempPair;
+        if (parent != NULL) {
+            if (parent->left == node) {
+                parent->left = child;
+            } else {
+                parent->right = child;
+            }
+            child->parent = parent;
+        } else {
+            tree->root = child;
+            child->parent = NULL;
+        }
+        free(node);
+    }
 
-    removeNode(tree, minRightSubtree);
-  }
+    else {
+        TreeNode* minRightSubtree = minimum(node->right); 
+        Pair* tempPair = node->pair;
+        node->pair = minRightSubtree->pair; 
+        minRightSubtree->pair = tempPair;
+        removeNode(tree, minRightSubtree);
+    }
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 
