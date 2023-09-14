@@ -156,7 +156,7 @@ void removeNodeWithTwoChildren(TreeMap* tree, TreeNode* node){
 void removeNode(TreeMap * tree, TreeNode* node){
   
   if ((tree == NULL) || (node == NULL)) return;
-  if (node->left == NULL && node->right == NULL) removeLeaf(tree, node);
+  if ((node -> left == NULL) && (node -> right == NULL)) removeLeaf(tree, node);
   else if (node->left != NULL && node->right != NULL) removeNodeWithTwoChildren(tree, node);
   else removeNodeWithOneChild(tree, node);
 }
@@ -182,7 +182,7 @@ Pair* searchTreeMapRecursive(TreeNode* node, void* key, int (*lower_than)(void* 
     *current = node;
     return node -> pair;
   } 
-  else if (comparison > 0) return searchTreeMapRecursive(node -> left, key, lower_than, current);
+  else if (comparison < 0) return searchTreeMapRecursive(node -> left, key, lower_than, current);
   else return searchTreeMapRecursive(node -> right, key, lower_than, current);
 }
 
