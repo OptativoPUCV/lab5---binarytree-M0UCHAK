@@ -98,7 +98,12 @@ void insertTreeMap(TreeMap * tree, void* key, void * value){
 
 TreeNode * minimum(TreeNode * x){
 
-    return NULL;
+  if (x == NULL) return NULL;
+    
+  while (x -> left != NULL) {
+    x = x -> left;
+  }
+  return x;
 }
 
 
@@ -140,11 +145,8 @@ Pair* searchTreeMap(TreeMap* tree, void* key){
   TreeNode* current = NULL;
   Pair* result = searchTreeMapRecursive(tree -> root, key, tree -> lower_than, &current);
 
-  //if (current == NULL) tree -> current = NULL;
-  //else 
-    
-  tree -> current = current;
-  
+  if (current == NULL) tree -> current = NULL;
+  else tree -> current = current;
   
   return result;
 }
