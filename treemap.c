@@ -95,6 +95,9 @@ Pair* searchTreeMapRecursive(TreeNode* node, void* key, int (*lower_than)(void* 
     return node -> pair; 
   }  
 
+  else if (comparison < 0) return searchTreeMapRecursive(node -> left, key, lower_than, current);
+
+  else return searchTreeMapRecursive(node -> right, key, lower_than, current);
 
 }
 
