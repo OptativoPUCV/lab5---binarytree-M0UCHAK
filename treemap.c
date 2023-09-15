@@ -180,7 +180,7 @@ Pair* upperBound(TreeMap* tree, void* key){
   if ((tree == NULL) || (tree -> root == NULL)) return NULL;
 
   TreeNode* aux = tree -> root;
-  TreeNode* upper = NULL;
+  Pair* upper = NULL;
 
   while (aux != NULL){
     if (tree -> lower_than(aux -> pair -> key,key)) aux = aux -> right;   
@@ -191,8 +191,8 @@ Pair* upperBound(TreeMap* tree, void* key){
   }
 
   if (upper != NULL){
-    tree -> current = upper;
-    return upper -> pair;
+    tree -> current = aux;
+    return upper;
   } 
   else return NULL;
     
