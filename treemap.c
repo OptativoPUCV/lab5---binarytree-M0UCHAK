@@ -156,36 +156,12 @@ void eraseTreeMap(TreeMap * tree, void* key){
 
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-
-Pair* searchTreeMapRecursive(TreeNode* node, void* key, int (*lower_than)(void* key1, void* key2), TreeNode** current){
-  
-  if (node == NULL){
-    *current = NULL;
-    return NULL;
-  }
-  int comparison = lower_than(key, node -> pair -> key);
-
-  if (comparison == 0){
-    *current = node;
-    return node -> pair;
-  } 
-  else if (comparison < 0) return searchTreeMapRecursive(node -> right, key, lower_than, current);
-  else return searchTreeMapRecursive(node -> left, key, lower_than, current);
-}
-
 Pair* searchTreeMap(TreeMap* tree, void* key){
   
   if ((tree == NULL) || (tree -> root == NULL)){
-    tree -> current = NULL;
     return NULL;
   }
-  TreeNode* current = NULL;
-  Pair* result = searchTreeMapRecursive(tree -> root, key, tree -> lower_than, &current);
-
-  if (current == NULL) tree -> current = NULL;
-  else tree -> current = current;
   
-  return result;
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 
